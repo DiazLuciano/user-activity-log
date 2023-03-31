@@ -1,0 +1,82 @@
+<!-- Spinner -->
+<div *ngIf="loading" class="d-flex justify-content-center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<!-- Register Form -->
+<mat-card *ngIf="!loading">
+  <mat-card-title class="mb-4">Registrar Usuario</mat-card-title>
+  <form [formGroup]="form">
+    <mat-card-content>
+      <div class="row">
+        <!-- Nombre -->
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombre" class="text-capitalize" formControlName="name" required>
+          </mat-form-field>
+        </div>
+
+        <!-- Apellido -->
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="Apellido" class="text-capitalize" formControlName="lastName" required>
+          </mat-form-field>
+        </div>
+
+        <!-- Email -->
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email" required>
+          </mat-form-field>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput placeholder="Número" type="number" formControlName="phoneNumber">
+          </mat-form-field>
+        </div>
+
+        <!-- Fecha Nacimiento -->
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthDate" required>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <!-- Pais Residencia -->
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline">
+            <mat-label>País de Residencia</mat-label>
+            <mat-select formControlName="country" required>
+              <mat-option *ngFor="let country of countries" [value]="country.code" >
+                {{country.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Pregunta sobre contacto -->
+        <div class="col-lg-6">
+          <mat-checkbox class="mt-4 fs-5" labelPosition="before" formControlName="questionContact">¿Desea recibir información?</mat-checkbox>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-divider inset class="ms-0"></mat-divider>
+
+    <!-- Action Buttons -->
+    <mat-card-actions class="d-flex justify-content-center p-3">
+      <button mat-flat-button color="primary" class="btn-main" type="submit" (click)="register()" [disabled]="form.invalid">REGISTRAR</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

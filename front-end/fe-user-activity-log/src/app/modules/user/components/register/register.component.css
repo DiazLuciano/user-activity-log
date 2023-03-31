@@ -1,0 +1,11 @@
+mat-form-field {
+  display: inline;
+  font-size: 17px;
+}
+
+.btn-main{
+  width: 9rem;
+  height: 3rem;
+  font-size: 17px;
+  font-weight: 500;
+}
