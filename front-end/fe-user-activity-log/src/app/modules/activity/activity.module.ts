@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivitiesComponent } from './components/activities/activities.component';
+import { MaterialModule } from '../../shared/material/material.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ActivitiesComponent } from './components/activities/activities.componen
   ],
   imports: [
     CommonModule,
-    ActivityRoutingModule
+    ActivityRoutingModule,
+    MaterialModule
   ]
 })
 export class ActivityModule { }

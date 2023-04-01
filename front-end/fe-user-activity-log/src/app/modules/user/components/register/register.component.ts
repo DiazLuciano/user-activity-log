@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as countriesData from '../../../../../assets/countries.json';
 import { Country } from '../../models/country.interface';
+import { User } from '../../models/user.interface';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -18,9 +21,10 @@ export class RegisterComponent implements OnInit {
   public selectedCountry: string = '';
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _userService: UserService,
+    private router: Router
   ) {
-
     this.getCountriesFromJson();
 
     this.form = this.fb.group({
@@ -42,7 +46,8 @@ export class RegisterComponent implements OnInit {
   }
 
   public register(): void {
-    const user: any = {
+    const user: User = {
+      id: 0,
       nombre: this.form.get('name')?.value,
       apellido: this.form.get('lastName')?.value,
       email: this.form.get('email')?.value,
@@ -50,8 +55,20 @@ export class RegisterComponent implements OnInit {
       telefono: this.form.get('phoneNumber')?.value,
       paisResidencia: this.form.get('country')?.value,
       preguntaContacto: this.form.get('questionContact')?.value ? true : false,
+      estado: 1
     };
-    console.log(user);
+
+    this._userService.addUser(user).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+
+          // this.activityService.addActivity();
+          this.router.navigateByUrl('/');
+        },
+        error: (error) => console.log(error)
+      }
+    );
   }
 
 }

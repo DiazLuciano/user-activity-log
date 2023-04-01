@@ -15,6 +15,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDatepickerModule,
     MatSelectModule,
     MatGridListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressBarModule
   ],
   exports: [
     MatToolbarModule,
@@ -51,7 +53,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDatepickerModule,
     MatSelectModule,
     MatGridListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }
