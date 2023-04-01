@@ -37,8 +37,8 @@ namespace be_user_activity_log.Controllers
         {
             try
             {
-                //_dbContext.Add(usuario);
-                //await _dbContext.SaveChangesAsync();
+                _dbContext.Add(usuario);
+                await _dbContext.SaveChangesAsync();
 
                 var newUser = _dbContext.Usuarios.OrderByDescending(r => r.Id).FirstOrDefault();
 
