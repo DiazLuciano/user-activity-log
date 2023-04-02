@@ -17,7 +17,19 @@ export class UserService {
     return this.http.get(this.apiUrl);
   }
 
+  public getUserById(id: number): Observable<any> {
+    return this.http.get(this.apiUrl + "/" + id);
+  }
+
   public addUser(user: User): Observable<any> {
     return this.http.post<User>(this.apiUrl, user);
+  }
+
+  public updateUser(id: number, user: User): Observable<any> {
+    return this.http.put<User>(this.apiUrl + "/" + id, user);
+  }
+
+  public deleteUser(id: number): Observable<any> {
+    return this.http.delete<User>(this.apiUrl + "/" + id);
   }
 }

@@ -21,14 +21,14 @@ namespace be_user_activity_log.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _dbContext.Actividades.ToListAsync());
+            return Ok(await _dbContext.Actividades.OrderByDescending(x => x.CreateDate).ToListAsync());
         }
 
         // GET api/<ActivityController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var activities = await _dbContext.Actividades.Where(x => x.IdUsuario == id).ToListAsync();
+            var activities = await _dbContext.Actividades.Where(x => x.IdUsuario == id).OrderByDescending(x => x.CreateDate).ToListAsync();
             return Ok(activities);
         }
 

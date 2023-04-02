@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'register-user',
     component: RegisterComponent
+  },
+  {
+    path: 'register-user/:id',
+    component: RegisterComponent
   }
 ];
 

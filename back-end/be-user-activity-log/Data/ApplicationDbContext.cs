@@ -30,7 +30,7 @@ public partial class ApplicationDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("ACTIVIDAD");
             entity.Property(e => e.CreateDate)
-                .HasColumnType("date")
+                .HasColumnType("datetime")
                 .HasColumnName("CREATE_DATE");
             entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
 

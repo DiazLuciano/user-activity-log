@@ -8,7 +8,7 @@ export interface User {
   fechaNacimiento: Date,
   telefono?: string,
   paisResidencia: Country,
-  preguntaContacto: boolean,
+  preguntaSobreContacto: boolean,
   actividades?: any[],
   estado?: number
 }

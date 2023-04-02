@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     SharedModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

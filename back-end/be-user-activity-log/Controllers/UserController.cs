@@ -26,9 +26,10 @@ namespace be_user_activity_log.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var user = await _dbContext.Usuarios.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return Ok(user);
         }
 
         // POST api/<UserController>
@@ -59,14 +60,46 @@ namespace be_user_activity_log.Controllers
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] Usuario usuario)
         {
+            var user = _dbContext.Usuarios.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Nombre = usuario.Nombre;
+            user.Apellido = usuario.Apellido;
+            user.Email = usuario.Email;
+            user.FechaNacimiento = usuario.FechaNacimiento;
+            user.PreguntaSobreContacto = usuario.PreguntaSobreContacto;
+            user.Telefono = usuario.Telefono;
+            user.PaisResidencia = usuario.PaisResidencia;
+
+            var activity = LogController.AddActivity(2, id);
+            _dbContext.Add(activity);
+
+            await _dbContext.SaveChangesAsync();
+            return NoContent();
         }
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var usuario = _dbContext.Usuarios.Find(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            // Baja logica 
+            usuario.Estado = 0;
+
+            var activity = LogController.AddActivity(3, id);
+            _dbContext.Add(activity);
+
+            await _dbContext.SaveChangesAsync();
+            return NoContent();
         }
     }
 }
